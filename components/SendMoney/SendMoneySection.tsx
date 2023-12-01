@@ -1,12 +1,13 @@
 import React, { FunctionComponent, useRef } from "react";
 import styled from "styled-components/native";
-import BottomSheet from "reanimated-bottom-sheet";
+import BottomSheet from '@gorhom/bottom-sheet';
+// types
+import { SendMoneySectionProps } from "./types";
 // components
 import { colors } from "../colors";
 import RegularText from "../Texts/RegularText";
 import SmallText from "../Texts/SmallText";
-// types
-import { SendMoneySectionProps } from "./types";
+import SendMoneyItem from "./SendMoneyItem";
 
 const SendMoneySectionBackground = styled.View`
     width: 100%;
@@ -25,7 +26,7 @@ const SendMoneyRow = styled.View`
 const SendMoneyList = styled.FlatList`
     width: 100%;
     flex: auto;
-    min-height: 80%
+    min-height: 80%;
     padding-horizontal: 25px;
 `;
 
@@ -49,6 +50,17 @@ const SendMoneySection: FunctionComponent<SendMoneySectionProps> = (props) => {
                         </SmallText>
                     </TextButton>
                 </SendMoneyRow>
+                <SendMoneyList 
+                    data={props.data}
+                    contentContainerStyle={{
+                        alignItems: "flex-start",
+                    }}
+                    horizontal={false}
+                    showVerticalScrollIndicator={false}
+                    numColumns={3}
+                    keyExtractor={({ id }: any) => id.toString()}
+                    renderItem={({ item }:any) => <SendMoneyItem {...item} />}
+                />
             </SendMoneySectionBackground>
         )
     };
@@ -57,11 +69,11 @@ const SendMoneySection: FunctionComponent<SendMoneySectionProps> = (props) => {
         <BottomSheet 
             ref={sheetRef}
             snapPoints={[240, 85]}
-            borderRadius={25}
-            initialSnap={1}
-            enabledContentGestureInteraction={false}
-            renderContent={renderContent}
-     />
+            index={1}
+            enableContentPanningGesture={false}
+     >
+     {renderContent()}
+     </BottomSheet>
     )
 };
 

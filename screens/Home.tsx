@@ -105,14 +105,13 @@ const Home: FunctionComponent = () => {
             img: portrait3,
         },
     ];
-   // <SendMoneySection data={sendMoneyData}/>
 
     return (
         <HomeContainer>
             <StatusBar style="dark" />
             <CardSection data={cardsData} />
             <TransactionSection data={transactionData} />
-   
+            <SendMoneySection data={sendMoneyData}/>
         </HomeContainer>
     );
 }
