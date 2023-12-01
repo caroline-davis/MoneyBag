@@ -14,6 +14,10 @@ import logo2 from "./../assets/cards/mc.png";
 import portrait1 from "./../assets/portraits/1.png";
 import portrait2 from "./../assets/portraits/2.png";
 import portrait3 from "./../assets/portraits/3.png";
+//types
+import { RootStackParamList } from "../navigators/RootStack";
+import { StackScreenProps } from "@react-navigation/stack";
+export type Props = StackScreenProps<RootStackParamList, "Home">;
 
 const HomeContainer = styled(Container)`
     background-color: ${colors.grayLight};
@@ -21,7 +25,7 @@ const HomeContainer = styled(Container)`
     flex: 1;
 `;
 
-const Home: FunctionComponent = () => {
+const Home: FunctionComponent<Props> = () => {
     const cardsData = [
         {
             id: 1,
